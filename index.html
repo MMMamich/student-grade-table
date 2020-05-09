@@ -9,9 +9,16 @@
   </head>
   <body>
       <header>
-          <h1 class="main_header">Student Page Table</h1>
+          <div class="row no-gutters">
+            <div class="col-sm-9">
+                <h1 class="main_header">Student Page Table</h1>
+            </div>
+            <div class="col-sm-3 text-right">
+               <h1>Average Grade <span class="badge badge-secondary grade"></span></h1>
+            </div>
+          </div>
       </header>
-
+      <!-- text-right-->
     <main>
         <article class="table-responsive">
           <table class="table table-striped table-bordered table-hover">
@@ -31,6 +38,7 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
      <script src="components/app.js"></script>
      <script src="components/grade-table.js"></script>
+     <script src="components/page-header.js"></script>
      <script src="main.js"></script>
   </body>
 </html>
