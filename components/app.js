@@ -12,7 +12,14 @@ class App {
     }
     handleGetGradesSuccess(grades){
       this.gradeTable.updateGrades(grades);
-      this.pageHeader.updateAverage(Math.floor((grades[0].grade) + (grades[1].grade) + (grades[2].grade)) / 3)
+      
+      const GRADE_SUM = 0;
+      for(let i=0; i<grades.length; i++) {
+          GRADE_SUM += grade[i].grade;
+      }
+      let GRADE_AVG =  GRADE_SUM / grades.length;
+
+      this.pageHeader.updateAverage(GRADE_AVG);
     }
     getGrades(){
         $.ajax({
