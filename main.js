@@ -1,29 +1,8 @@
-class App {
-    constructor(gradeTable, pageHeader){
-      this.gradeTable = gradeTable;
-      this.pageHeader = pageHeader;
+const HEADER      = document.querySelector('.grade');
+const PAGE_HEADER = new PageHeader(HEADER);
 
-      this.handleGetGradesError   = this.handleGetGradesError.bind(this);
-      this.handleGetGradesSuccess = this.handleGetGradesSuccess.bind(this);
-    }
+const TABLE       = document.querySelector('table');
+const GRADE_TABLE = new GradeTable(TABLE);
 
-    handleGetGradesError(err){
-      console.error(err);
-    }
-    handleGetGradesSuccess(grades){
-      this.gradeTable.updateGrades(grades);
-      this.pageHeader.updateAverage(GRADE_AVG);
-    }
-    getGrades(){
-        $.ajax({
-           method: "GET",
-           url: 'https://sgt.lfzprototypes.com/api/grades',
-           headers: { "X-Access-Token": "EIX4Pjaf"},
-           success: grades => this.handleGetGradesSuccess(grades),
-           error: error => this.handleGetGradesError(error)
-        })
-    }
-    start(){
-        this.getGrades();
-    }
-}
+const GRADES = new App(GRADE_TABLE, PAGE_HEADER);
+GRADES.start();
