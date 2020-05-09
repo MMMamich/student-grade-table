@@ -12,12 +12,12 @@ class App {
     }
     handleGetGradesSuccess(grades){
       this.gradeTable.updateGrades(grades);
-      
-      const GRADE_SUM = 0;
+
+      let gradeSum = 0;
       for(let i=0; i<grades.length; i++) {
-          GRADE_SUM += grade[i].grade;
+          gradeSum += grade[i].grade;
       }
-      let GRADE_AVG =  GRADE_SUM / grades.length;
+      const GRADE_AVG =  gradeSum / grades.length;
 
       this.pageHeader.updateAverage(GRADE_AVG);
     }
