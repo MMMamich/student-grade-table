@@ -12,7 +12,7 @@ class App {
     }
     handleGetGradesSuccess(grades){
       this.gradeTable.updateGrades(grades);
-      this.pageHeader.updateAverage(Math.floor((grades[0].grade) + (grades[1].grade) + (grades[2].grade)) / 3)
+      this.pageHeader.updateAverage(GRADE_AVG);
     }
     getGrades(){
         $.ajax({
