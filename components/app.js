@@ -15,7 +15,7 @@ class App {
 
       let gradeSum = 0;
       for(let i=0; i<grades.length; i++) {
-          gradeSum += grade[i].grade;
+          gradeSum += grades[i].grade;
       }
       const GRADE_AVG =  gradeSum / grades.length;
 

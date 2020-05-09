@@ -26,3 +26,12 @@ body {
  .main_header {
    font-size: var(--xbig_header);
  }
+
+.fas {
+  background: transparent;
+  border-color: transparent;
+}
+.fa-user, .fa-graduation-cap, .fa-university {
+    max-width: 40px;
+    padding-right: 30px !important; 
+}
