@@ -1,0 +1,28 @@
+:root{
+   font-family: 'Poppins', sans-serif;
+   box-sizing: border-box;
+   font-size: 62.5%;
+
+   /* Header */
+   --xbig_header: 3.6rem;
+   --big_header:  2.9rem;
+   --medium_header: 2.4rem;
+   --small_header: 2rem;
+   --xsmall_header: 1.6rem;
+
+   /*Colors*/
+   --dark: #241E24;
+   --light: #ffffff;
+   --primary: #00685E;
+   --secondary: #532A44;
+   --accent: #FCC72C;
+}
+
+body {
+  margin: 75px;
+}
+
+ /*Headers*/
+ .main_header {
+   font-size: var(--xbig_header);
+ }
