@@ -7,11 +7,11 @@ class GradeTable {
     updateTableElement.textContent = "";
 
     for(let i=0; i < grades.length; i++) {
-      let tr   = document.createElement('tr');
+      const tr   = document.createElement('tr');
 
-      let tdName   = document.createElement('td');
-      let tdCourse = document.createElement('td');
-      let tdGrade  = document.createElement('td');
+      const tdName   = document.createElement('td');
+      const tdCourse = document.createElement('td');
+      const tdGrade  = document.createElement('td');
 
       tdName.textContent   = grades[i].name;
       tdCourse.textContent = grades[i].course;
