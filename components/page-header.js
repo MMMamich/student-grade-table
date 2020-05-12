@@ -4,6 +4,6 @@ class PageHeader {
   }
   updateAverage(newAverage){
     this.headerElement = document.querySelector('.grade');
-    this.headerElement.append(newAverage);
+    this.headerElement.textContent = Math.floor(newAverage);
   }
 }
