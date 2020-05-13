@@ -1,25 +1,33 @@
 class App {
-    constructor(gradeTable, pageHeader){
+    constructor(gradeTable, pageHeader, gradeForm){
       this.gradeTable = gradeTable;
       this.pageHeader = pageHeader;
+      this.gradeForm  = gradeForm;
 
-      this.handleGetGradesError   = this.handleGetGradesError.bind(this);
-      this.handleGetGradesSuccess = this.handleGetGradesSuccess.bind(this);
+      this.handleGetGradesError      = this.handleGetGradesError.bind(this);
+      this.handleGetGradesSuccess    = this.handleGetGradesSuccess.bind(this);
+      this.handleCreateGradesError   = this.handleCreateGradesError.bind(this);
+      this.handleCreateGradesSuccess = this.handleCreateGradesSuccess.bind(this);
+      this.handleDeleteGradeSuccess  = this.handleDeleteGradeSuccess.bind(this);
+      this.handleDeleteGradeSuccess  = this.handleDeleteGradeSuccess.bind(this);
+      this.deleteGrade               = this.deleteGrade.bind(this);
+      this.createGrade               = this.createGrade.bind(this);
     }
 
-    handleGetGradesError(err){
-      console.error(err);
-    }
-    handleGetGradesSuccess(grades){
-      this.gradeTable.updateGrades(grades);
-
-      let gradeSum = 0;
-      for(let i=0; i<grades.length; i++) {
-          gradeSum += grade[i].grade;
-      }
-      const GRADE_AVG =  gradeSum / grades.length;
-
-      this.pageHeader.updateAverage(GRADE_AVG);
+    createGrade(name, course, grade){
+      $.ajax({
+         method: "POST",
+         url: 'https://sgt.lfzprototypes.com/api/grades',
+         headers: { "X-Access-Token": "EIX4Pjaf"},
+         data: {
+           "name": name,
+           "course": course,
+           "grade": grade
+         },
+         dataType: "json",
+         success: grades => this.handleCreateGradesSuccess(grades),
+         error: error => this.handleCreateGradesError(error)
+      })
     }
     getGrades(){
         $.ajax({
@@ -30,7 +38,49 @@ class App {
            error: error => this.handleGetGradesError(error)
         })
     }
+    deleteGrade(id){
+      $.ajax({
+         method: "DELETE",
+         url: "https://sgt.lfzprototypes.com/api/grades/" + id,
+         dataType: "json",
+         headers: { "X-Access-Token": "EIX4Pjaf"},
+         success: grades => this.handleDeleteGradeSuccess(grades),
+         error: error => this.handleDeleteGradeError(error)
+      })
+    }
+
+    handleDeleteGradeError(err){
+      console.error(err);
+    }
+    handleDeleteGradeSuccess(){
+      this.getGrades();
+    }
+
+    handleCreateGradesError(err){
+      console.error(err);
+    }
+
+    handleCreateGradesSuccess(){
+        this.getGrades();
+    }
+
+    handleGetGradesError(err){
+      console.error(err);
+    }
+    handleGetGradesSuccess(grades){
+      this.gradeTable.updateGrades(grades);
+
+      let gradeSum = 0;
+      for(let i=0; i<grades.length; i++) {
+          gradeSum += grades[i].grade;
+      }
+      const GRADE_AVG =  gradeSum / grades.length;
+
+      this.pageHeader.updateAverage(GRADE_AVG);
+    }
     start(){
         this.getGrades();
+        this.gradeForm.onSubmit(this.createGrade);
+        this.gradeTable.onDeleteClick(this.deleteGrade)
     }
 }
